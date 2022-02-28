@@ -1,5 +1,10 @@
 const flagGenerator = document.querySelector("button");
+const allInputs = document.querySelectorAll("input");
+let scoreBoard = document.getElementById("head");
+let name0 = "";
+
 flagGenerator.addEventListener("click", function (e) {
+
   const imagePicker = Math.floor(Math.random() * countryWithImages.length);
 
   const selectedCountryImage = countryWithImages[imagePicker];
@@ -8,36 +13,35 @@ flagGenerator.addEventListener("click", function (e) {
     .querySelector("img")
     .setAttribute("src", `https:${selectedCountryImage.file_url}`);
 
-  // let countryName1 = document.getElementById("countryOne");
-  // countryName1.textContent = selectedCountryImage.name;
-
-
-  const allLabels = document.querySelectorAll("label")
-  allLabels[0].textContent = selectedCountryImage.name;
-  allLabels[1].textContent = countryWithImages[Math.floor(Math.random() * countryWithImages.length)].name
-  allLabels[2].textContent = countryWithImages[Math.floor(Math.random() * countryWithImages.length)].name
-  allLabels[3].textContent = countryWithImages[Math.floor(Math.random() * countryWithImages.length)].name
-  
-  
   //   question for flag selection
   const question = document.querySelector("p");
   question.textContent = `What is the name of the country depicted above ${"?"}`;
 
-  // // generating second random option for country in the second radio
+  const allLabels = document.querySelectorAll("label");
 
-  // let randomOption1 = countryWithImages[Math.floor(Math.random() * countryWithImages.length)];
+  for (let i = 0; i < allLabels.length; i++) {
+    let selectName =  countryWithImages[
+      Math.floor(Math.random() * countryWithImages.length)
+    ].name;
+    allLabels[i].textContent = selectName;
+    allInputs[i].setAttribute("value", selectName)
+     
+  }
 
-  // let countryName2 = document.getElementById("countryTwo");
-  // countryName2.textContent = randomOption1.name;
+  name0 = selectedCountryImage.name;
+  const answerIndex = Math.floor(Math.random() * allLabels.length);
+  allLabels[answerIndex].textContent = name0;
+  allInputs[answerIndex].setAttribute("value", name0);
 
-  // // generating third random option for country in the third radio
-  // let randomOption2 = countryWithImages[Math.floor(Math.random() * countryWithImages.length)];
-  // let countryName3 = document.getElementById("countryThree");
-  // countryName3.textContent = randomOption2.name;
-
-  // // generating fourth random option for country in the fourth radio
-
-  //  let randomOption3 = countryWithImages[Math.floor(Math.random() * countryWithImages.length)];
-  //  let countryName4 = document.getElementById("countryFour");
-  //  countryName4.textContent = randomOption3.name;
 });
+
+
+for (let i = 0; i < allInputs.length; i++) {
+  allInputs[i].addEventListener("click", function (e) {
+    if (e.currentTarget.value === name0) {
+      scoreBoard.textContent = "you are right";
+    } else {
+      scoreBoard.textContent = "you are wrong";
+    }
+  });
+}
