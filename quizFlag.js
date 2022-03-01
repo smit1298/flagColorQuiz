@@ -8,8 +8,8 @@ window.addEventListener('load', ()=>{
   populateQuiz()
 })
 
+
 flagGenerator.addEventListener("click", function (e) {
-  // clearField()
   location.reload();
 });
 
@@ -54,9 +54,3 @@ for (let i = 0; i < allInputs.length; i++) {
   });
 }
 
-// function clearField() {
-//   allInputs.forEach(input => {
-//     input.
-// //   })
-//   // scoreBoard = ""
-// }
