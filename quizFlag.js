@@ -3,8 +3,18 @@ const allInputs = document.querySelectorAll("input");
 let scoreBoard = document.getElementById("head");
 let name0 = "";
 
-flagGenerator.addEventListener("click", function (e) {
 
+window.addEventListener('load', ()=>{
+  populateQuiz()
+})
+
+flagGenerator.addEventListener("click", function (e) {
+  // clearField()
+  location.reload();
+});
+
+
+function populateQuiz (){
   const imagePicker = Math.floor(Math.random() * countryWithImages.length);
 
   const selectedCountryImage = countryWithImages[imagePicker];
@@ -32,9 +42,7 @@ flagGenerator.addEventListener("click", function (e) {
   const answerIndex = Math.floor(Math.random() * allLabels.length);
   allLabels[answerIndex].textContent = name0;
   allInputs[answerIndex].setAttribute("value", name0);
-
-});
-
+}
 
 for (let i = 0; i < allInputs.length; i++) {
   allInputs[i].addEventListener("click", function (e) {
@@ -45,3 +53,10 @@ for (let i = 0; i < allInputs.length; i++) {
     }
   });
 }
+
+// function clearField() {
+//   allInputs.forEach(input => {
+//     input.
+// //   })
+//   // scoreBoard = ""
+// }
