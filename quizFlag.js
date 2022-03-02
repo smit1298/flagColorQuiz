@@ -1,6 +1,7 @@
 const flagGenerator = document.querySelector("button");
 const allInputs = document.querySelectorAll("input");
-let scoreBoard = document.getElementById("head");
+let scoreRight = document.getElementById("right");
+let scoreWrong = document.getElementById("wrong");
 let name0 = "";
 
 
@@ -47,9 +48,11 @@ function populateQuiz (){
 for (let i = 0; i < allInputs.length; i++) {
   allInputs[i].addEventListener("click", function (e) {
     if (e.currentTarget.value === name0) {
-      scoreBoard.textContent = "you are right";
+      scoreRight.textContent = "RIGHT";
+      scoreRight.style.color = "green";
     } else {
-      scoreBoard.textContent = "you are wrong";
+      scoreWrong.textContent = "WRONG";
+      scoreWrong.style.color = "red";
     }
   });
 }
